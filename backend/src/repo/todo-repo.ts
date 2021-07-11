@@ -15,29 +15,6 @@ class TodoRepoImpl implements TodoRepo {
         return new TodoRepoImpl()
     }
 
-    // async getTodos(): Promise<Array<ITodo>> {
-    //     // TODO: Should get Todo from mongoDB
-    //     return Todo.find()
-    // }
-
-    // // TODO: Should add Todo into mongoDB
-    // async addTodo(todoBody: ITodo): Promise<ITodo> {
-    //     // TODO: Should get Todo from mongoDB
-    //     return Todo.create(todoBody)
-    // }
-
-    // async updateTodo(id: string, todoBody: ITodo): Promise<ITodo | null> {
-    //     // TODO: Should update Todo to mongoDB
-    //     return Todo.findByIdAndUpdate(
-    //         id, todoBody, {new: true }
-    //     )
-    // }
-
-    // async deleteTodo(id: string): Promise<ITodo | null> {
-    //     // TODO: Should delete Todo from mongoDB
-    //     return Todo.findByIdAndDelete(id)
-    // }
-
     async getTodos(): Promise<Array<ITodo>> {
         return Todo.find()
     }
@@ -47,7 +24,9 @@ class TodoRepoImpl implements TodoRepo {
     }
 
     async updateTodo(id: string, todoBody: ITodo): Promise<ITodo | null> {
-        return Todo.findByIdAndUpdate(id, todoBody)
+        return Todo.findByIdAndUpdate(
+            id, todoBody, { new: true }
+        )
     }
 
     async deleteTodo(id: string): Promise<ITodo | null> {

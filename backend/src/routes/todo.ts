@@ -10,46 +10,6 @@ const TodoRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
         id: string
     }
 
-    // TODO: Add CRUD endpoints, i.e. get, post, update, delete
-    // NOTE: the url should be RESTful
-    // server.get('/todos', opts, async (request, reply) => {
-    //     try {
-    //         const todos: Array<ITodo> = await todoRepo.getTodos()
-    //         return reply.status(200).send({ todos})
-    //     } catch (error) {
-    //         console.error('GET /todos Error: ${error}')
-    //     }
-    // })
-
-    // server.post('/todos', opts, async (request, reply) => {
-    //     try {
-    //         const todoBody: ITodo = request.body as ITodo
-    //         const todo: ITodo = await todoRepo.addTodo(todoBody)
-    //         return reply.status(201).send({ todo })
-    //     } catch (error) {
-    //         // return reply.status(500).send('Server Error')
-    //         console.error('POST /todos Error: ${error}')
-    //     }
-    // })
-
-    // server.put<{Params: IdParam}>('/todos/id', opts, async (request, reply) => {
-    //     try {
-    //         const id =  request.params.id
-    //         const todoBody: ITodo = await request.body as ITodo
-    //         return reply.status(200).send({ id, todoBody })
-    //     } catch (error) {
-    //         console.error('PUT /todos Error: ${error}')
-    //     }
-    // })
-
-    // server.delete<{Params: IdParam}>('/todos/id', opts, async (request, reply) => {
-    //     try {
-    //         const id =  request.params.id
-    //         return reply.status(200).send({ id })
-    //     } catch (error) {
-    //         console.error('DELETE /todos Error: ${error}')
-    //     }
-    // })
     server.get('/todos', opts, async (request, reply) => {
         try {
             const todos: Array<ITodo> = await todoRepo.getTodos()
@@ -59,7 +19,7 @@ const TodoRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
             return reply.status(500).send(`[Server Error]: ${error}`)
         }
     })
-    
+
     server.post('/todos', opts, async (request, reply) => {
         try {
             const todoBody: ITodo = request.body as ITodo
@@ -70,7 +30,7 @@ const TodoRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
             return reply.status(500).send(`[Server Error]: ${error}`)
         }
     })
-    
+
     server.put<{ Params: IdParam }>('/todos/:id', opts, async (request, reply) => {
         try {
             const id = request.params.id
@@ -86,7 +46,7 @@ const TodoRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
             return reply.status(500).send(`[Server Error]: ${error}`)
         }
     })
-    
+
     server.delete<{ Params: IdParam }>('/todos/:id', opts, async (request, reply) => {
         try {
             const id = request.params.id
